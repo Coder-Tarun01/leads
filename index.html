@@ -18,6 +18,11 @@
             </div>
             <div class="stats-bar">
                 <div class="stat-item">
+                    <button class="action-btn" onclick="exportLeads()" style="font-size: 10px; padding: 4px 8px;">Export JSON</button>
+                    <button class="action-btn" onclick="document.getElementById('import-input').click()" style="font-size: 10px; padding: 4px 8px;">Import JSON</button>
+                    <input type="file" id="import-input" class="hidden" accept=".json">
+                </div>
+                <div class="stat-item">
                     <span id="stat-total" class="stat-value">0</span>
                     <span class="stat-label">Leads</span>
                 </div>

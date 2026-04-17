@@ -165,10 +165,44 @@ function renderScripts() {
       <h4 style="color:var(--accent-secondary); margin-bottom:5px;">${s.type}</h4>
       <p style="font-size:0.875rem; font-style:italic; color:var(--text-muted); margin-bottom:10px;">Goal: ${s.hook}</p>
       <div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:6px; font-family:monospace; font-size:0.8rem; white-space:pre-wrap;">${s.content}</div>
-      <button class="action-btn" style="margin-top:10px; width:100%;" onclick="alert('Copied to clipboard (simulated)')">Copy Script</button>
+      <button class="action-btn" style="margin-top:10px; width:100%;" onclick="copyToClipboard('${s.content.replace(/'/g, "\\'")}')">Copy Script</button>
     </div>
   `).join('');
 }
+
+window.exportLeads = () => {
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(leads));
+  const downloadAnchorNode = document.createElement('a');
+  downloadAnchorNode.setAttribute("href",     dataStr);
+  downloadAnchorNode.setAttribute("download", "leads_backup.json");
+  document.body.appendChild(downloadAnchorNode);
+  downloadAnchorNode.click();
+  downloadAnchorNode.remove();
+}
+
+document.getElementById('import-input').addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const imported = JSON.parse(e.target.result);
+      if (Array.isArray(imported)) {
+        leads = imported;
+        saveData();
+        updateStats();
+        alert('Leads imported successfully!');
+        if(document.getElementById('tab-pipeline').classList.contains('active')) renderPipeline();
+      }
+    } catch (err) { alert('Invalid file format'); }
+  };
+  reader.readAsText(file);
+});
+
+window.copyToClipboard = (text) => {
+  navigator.clipboard.writeText(text).then(() => alert('Copied to clipboard!'));
+}
+
 
 // Init
 updateStats();
