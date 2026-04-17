@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antigravity Lead Engine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="title-group">
+                <h1>Lead Engine v1.0</h1>
+                <p class="stat-label">Solo Operator Business OS</p>
+            </div>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span id="stat-total" class="stat-value">0</span>
+                    <span class="stat-label">Leads</span>
+                </div>
+                <div class="stat-item">
+                    <span id="stat-hot" class="stat-value">0</span>
+                    <span class="stat-label">Hot (8+)</span>
+                </div>
+                <div class="stat-item">
+                    <span id="stat-conversion" class="stat-value">0%</span>
+                    <span class="stat-label">Closure</span>
+                </div>
+            </div>
+        </header>
+
+        <nav class="tabs">
+            <button id="tab-capture" class="tab-btn active">Capture Field Lead</button>
+            <button id="tab-pipeline" class="tab-btn">My Pipeline</button>
+            <button id="tab-scripts" class="tab-btn">Outreach Library</button>
+        </nav>
+
+        <!-- CAPTURE VIEW -->
+        <section id="view-capture" class="view">
+            <div class="card">
+                <form id="lead-form">
+                    <div class="grid">
+                        <div class="form-section">
+                            <label>Basic Information</label>
+                            <div class="form-group">
+                                <input type="text" id="biz-name" placeholder="Business Name" required>
+                            </div>
+                            <div class="form-group">
+                                <select id="biz-category">
+                                    <option value="">Category...</option>
+                                    <option value="Gym">Gym / Fitness</option>
+                                    <option value="Salon">Salon / Spa</option>
+                                    <option value="Restaurant">Restaurant / Cafe</option>
+                                    <option value="Retail">Retail Store</option>
+                                    <option value="Mechanic">Mechanic / Garage</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="biz-location" placeholder="Location / Landmark">
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" id="biz-phone" placeholder="Phone / WhatsApp">
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <label>The Street Score (0-10)</label>
+                            <div class="score-grid">
+                                <div class="score-input-group">
+                                    <label>Crowd & Buzz</label>
+                                    <input type="range" id="score-crowd" min="0" max="3" value="0">
+                                    <span class="score-value" id="val-crowd">0</span>
+                                </div>
+                                <div class="score-input-group">
+                                    <label>Reputation</label>
+                                    <input type="range" id="score-rep" min="0" max="3" value="0">
+                                    <span class="score-value" id="val-rep">0</span>
+                                </div>
+                                <div class="score-input-group">
+                                    <label>Price Level</label>
+                                    <input type="range" id="score-price" min="0" max="2" value="0">
+                                    <span class="score-value" id="val-price">0</span>
+                                </div>
+                                <div class="score-input-group">
+                                    <label>Gut Feel</label>
+                                    <input type="range" id="score-gut" min="0" max="2" value="0">
+                                    <span class="score-value" id="val-gut">0</span>
+                                </div>
+                                <div style="margin-top: 15px; display: flex; align-items: center; gap: 10px;">
+                                    <label style="margin-bottom: 0;">Trust Filter (Yes/No)</label>
+                                    <input type="checkbox" id="trust-filter" style="width: auto;" checked>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid" style="margin-top: 20px;">
+                        <div class="form-group">
+                            <label>Digital Gap / Problem</label>
+                            <textarea id="digital-gap" rows="2" placeholder="e.g. No online menu, slow WhatsApp response..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>The Hook Angle</label>
+                            <textarea id="hook-angle" rows="2" placeholder="My pitch idea for this business..."></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="primary-btn">Save Lead & Calculate Score</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- PIPELINE VIEW -->
+        <section id="view-pipeline" class="view hidden">
+            <div class="lead-list" id="pipeline-list">
+                <!-- Leads will be injected here -->
+            </div>
+        </section>
+
+        <!-- SCRIPTS VIEW -->
+        <section id="view-scripts" class="view hidden">
+            <div class="card">
+                <h3>Outreach Library</h3>
+                <div id="scripts-container">
+                    <!-- Scripts will be injected here -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
